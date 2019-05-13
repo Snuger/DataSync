@@ -1,0 +1,64 @@
+﻿<control:MetroWindow x:Class="DataSync.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:DataSync"
+        mc:Ignorable="d"
+        Title="数据上传工具" Height="450" Width="800">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Width="80" Background="{StaticResource WindowTitleColorBrush}">
+            <ToggleButton Width="55" Height="55" Margin="5" 
+              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+              ToolTip="MaterialDesignFlatPrimaryToggleButton"
+              IsChecked="False">
+                <materialDesign:PackIcon
+                Kind="Update"
+                Height="35"
+                Width="35" Background="White" />
+            </ToggleButton>
+            <ToggleButton Width="55" Height="55" Margin="5" 
+              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+              ToolTip="MaterialDesignFlatPrimaryToggleButton"
+              IsChecked="False">
+                <materialDesign:PackIcon
+                Kind="Upload"
+                Height="35"
+                Width="35" Background="White" />
+            </ToggleButton>
+            <ToggleButton Width="55" Height="55" Margin="5"
+              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+              ToolTip="MaterialDesignFlatPrimaryToggleButton"
+              IsChecked="False">
+                <materialDesign:PackIcon
+                Kind="SettingsOutline"
+                Height="35"
+                Width="35" Background="White" />
+            </ToggleButton>
+            <ToggleButton Width="55" Height="55" Margin="5" 
+              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+              ToolTip="MaterialDesignFlatPrimaryToggleButton"
+              IsChecked="False">
+                <materialDesign:PackIcon
+                Kind="SettingsOutline"
+                Height="35"
+                Width="35" Background="White" />
+            </ToggleButton>
+            <ToggleButton Width="55" Height="55" Margin="5" 
+              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+              ToolTip="MaterialDesignFlatPrimaryToggleButton"
+              IsChecked="False">
+                <materialDesign:PackIcon
+                Kind="SettingsOutline"
+                Height="35"
+                Width="35" Background="White" />
+            </ToggleButton>
+        </StackPanel>
+        <Grid DockPanel.Dock="Right">
+            
+        </Grid>         
+    </DockPanel>
+</control:MetroWindow>
