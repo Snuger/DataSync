@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="数据上传工具" Height="450" Width="800">   
     <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Width="80"  Background="#FFEAEAEA">
+        <StackPanel DockPanel.Dock="Left" Width="80"  Background="#FFEEEEEE">
             <ToggleButton Width="55" Height="55" Margin="5" 
               Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
               ToolTip="MaterialDesignFlatPrimaryToggleButton"
@@ -57,12 +57,20 @@
             </ToggleButton>
         </StackPanel>
         <Grid DockPanel.Dock="Right" Margin="8"  DataContext="{StaticResource XmlData}">
-            <DataGrid  ItemsSource="{Binding}" AutoGenerateColumns="False">                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button Content="添加任务" Width="75"/>
+            </WrapPanel>
+            <DataGrid  CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False">                
                 <DataGrid.Columns>
-                    <DataGridTextColumn IsReadOnly="True" Width="150" Header="交易名称" Binding="{Binding XPath=name}"></DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="日期" Binding="{Binding  XPath=date}"></DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True"  Width="150" Header="记录数" Binding="{Binding XPath=total}"></DataGridTextColumn>                
-                    <DataGridTemplateColumn IsReadOnly="True" Width="250" Header="上传进度">
+                    <DataGridTextColumn  IsReadOnly="True" Width="120" Header="交易名称" Binding="{Binding XPath=name}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="80" Header="日期" Binding="{Binding  XPath=date}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="记录数" Binding="{Binding XPath=total}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="已上传" Binding="{Binding XPath=Uploaded}"></DataGridTextColumn>
+                    <DataGridTemplateColumn IsReadOnly="True" Width="250" Header="进度">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ProgressBar  Maximum="{Binding  XPath=total}" Value="{Binding XPath=Uploaded}" Minimum="0" />

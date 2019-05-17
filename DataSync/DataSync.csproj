@@ -72,6 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Api\TaskQueue.cs" />
+    <Compile Include="Model\DataCell.cs" />
     <Compile Include="UserControls\DataSyncConfig.xaml.cs">
       <DependentUpon>DataSyncConfig.xaml</DependentUpon>
     </Compile>
@@ -122,5 +124,6 @@
   <ItemGroup>
     <Resource Include="Data\data.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
