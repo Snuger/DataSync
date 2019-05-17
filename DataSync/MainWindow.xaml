@@ -7,8 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:DataSync"
         mc:Ignorable="d"
-        Title="数据上传工具" Height="450" Width="800">
-
+        Title="数据上传工具" Height="450" Width="800">   
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="80" Background="{StaticResource WindowTitleColorBrush}">
             <ToggleButton Width="55" Height="55" Margin="5" 
@@ -57,8 +56,21 @@
                 Width="35" Background="White" />
             </ToggleButton>
         </StackPanel>
-        <Grid DockPanel.Dock="Right">
-            
-        </Grid>         
+        <Grid DockPanel.Dock="Right" Margin="8"  DataContext="{StaticResource XmlData}">
+            <DataGrid  ItemsSource="{Binding}" AutoGenerateColumns="False">                
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Width="150" Header="交易名称" Binding="{Binding XPath=name}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="日期" Binding="{Binding  XPath=date}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="150" Header="记录数" Binding="{Binding XPath=total}"></DataGridTextColumn>                
+                    <DataGridTemplateColumn IsReadOnly="True" Width="250" Header="上传进度">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar  Maximum="{Binding  XPath=total}" Value="{Binding XPath=Uploaded}" Minimum="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </DockPanel>
 </control:MetroWindow>

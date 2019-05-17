@@ -26,6 +26,8 @@
                         Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml " />
             </ResourceDictionary.MergedDictionaries>
 
+
+            <XmlDataProvider x:Key="XmlData" Source="Data/data.xml" XPath="data/block"/>
             <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource Primary100}"/>
             <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource Primary500}"/>
             <SolidColorBrush x:Key="AccentColorBrush2" Color="{DynamicResource Primary400}"/>
