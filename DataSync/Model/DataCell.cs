@@ -15,8 +15,18 @@ namespace DataSync.Model
 
         public int  Total { get; set; }
 
-        public int  UploadedCount { get; set; }
+        public int  UploadedTotal { get; set; }
 
-        public string BusinessDate { get; set; }        
+        public string BusinessDate { get; set; }
+
+
+        private bool complated;
+
+        public bool Complated
+        {
+            get { return complated; }
+            set => complated=(UploadedTotal >= Total) ? true : value;           
+        }
+
     }
 }
