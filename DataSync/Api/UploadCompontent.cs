@@ -17,6 +17,7 @@ namespace DataSync.Api
         public delegate void CompontentComplatedHadel(DataCell dataCell);
         public event CompontentComplatedHadel CompontentComplatedEvent;
 
+
         /// <summary>
         /// 线程数
         /// </summary>
@@ -54,19 +55,14 @@ namespace DataSync.Api
 
         protected void CompontentDoWork()
         {
-            Random random = new Random();
+            Random random = new Random(10);
+            long tick = DateTime.Now.Ticks;
             while (true)
-            {
-                if (this.CurrentDataCell.UploadedTotal < this.CurrentDataCell.Total)
-                {
-                    int uploadTotal = CurrentDataCell.UploadedTotal + random.Next(1, 500);
-                    this.CurrentDataCell.UploadedTotal = uploadTotal >= CurrentDataCell.Total?CurrentDataCell.Total: uploadTotal;
-                    Thread.Sleep(new Random().Next(100, 2000));
-                }
-                else
-                {
-                    CompontentComplatedEvent?.Invoke(this.CurrentDataCell);
-                }
+            {               
+                int uploadTotal = CurrentDataCell.UploadedTotal + new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(1, 500);
+                this.CurrentDataCell.UploadedTotal = uploadTotal >= CurrentDataCell.Total?CurrentDataCell.Total: uploadTotal;
+                CompontentComplatedEvent?.Invoke(this.CurrentDataCell);
+                Thread.Sleep(new Random().Next(100, 1500));
             }
         }
 

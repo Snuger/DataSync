@@ -19,12 +19,6 @@ namespace DataSync.Api
         /// </summary>
         public int MaxThradNum { get; set; }
 
-
-        /// <summary>
-        /// 当前在线线程数
-        /// </summary>
-        public int OnLineThreadNum { get; set; }
-
         /// <summary>
         /// 待进行的任务
         /// </summary>
@@ -36,12 +30,13 @@ namespace DataSync.Api
             Compontents = new List<UploadCompontent>();             
         }
 
-        public void OnCompontentComplated(DataCell dataCell) {
-           UploadCompontent compontent= this.Compontents.Where(c => c.CurrentDataCell == dataCell).FirstOrDefault();
-            OnLineThreadNum -= 1;
+        public void OnCompontentComplated(DataCell dataCell)
+        {
+            UploadCompontent compontent = this.Compontents.Where(c => c.CurrentDataCell == dataCell).FirstOrDefault();
             UploadCompontentComplatedEvent.Invoke(dataCell);
-            compontent.Abort();
-           
+            if (dataCell.Total <= dataCell.UploadedTotal)
+                compontent.Abort();
+
         }
 
         /// <summary>
