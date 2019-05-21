@@ -62,13 +62,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
             </Grid.RowDefinitions>
             <WrapPanel Grid.Row="0" VerticalAlignment="Center">
                 <Button Content="添加任务" Name="btn_add_task" Command="{s:Action AddNewTaskComman}" Margin="4,0"/>
                 <Button Content="开始" Margin="4,0"/>
                 <Button Content="全部开始" Name="btn_start_all" Command="{s:Action AllTaskStartCommand}" Margin="4,0"/>
+                <Button Content="全自动" Name="btn_auto" Margin="4,0" Command="{s:Action FullyAutomaticCommand}"/>              
             </WrapPanel>
-            <DataGrid    IsReadOnly="True" CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding DataCells}"  AutoGenerateColumns="False">
+            <DataGrid  IsReadOnly="True" CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding DataCells}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn   Width="80" Header="编号" Binding="{Binding Id,Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn   Width="120" Header="交易名称" Binding="{Binding Name}"></DataGridTextColumn>
@@ -81,10 +83,15 @@
                                 <ProgressBar materialDesign:TransitionAssist.DisableTransitions="True"  Maximum="{Binding  Total}" Value="{Binding UploadedTotal}" Minimum="0" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>                  
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
-
             </DataGrid>
+            <WrapPanel Grid.Row="2">
+                <Label>状态-最大线程数：</Label>
+                <Label Content="{Binding MaxThreadNum}"></Label>
+                <Label Content="当前线程数:"/>
+                <Label Content="{Binding ActiveThreadNum}"></Label>
+            </WrapPanel>
         </Grid>
     </DockPanel>
 </Controls:MetroWindow>
