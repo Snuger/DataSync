@@ -54,12 +54,12 @@ namespace DataSync.Api
         }
 
         protected void CompontentDoWork()
-        {
-            Random random = new Random(10);
-            long tick = DateTime.Now.Ticks;
+        {            
             while (true)
-            {               
-                int uploadTotal = CurrentDataCell.UploadedTotal + new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(1, 500);
+            {
+                Random random = new Random(10);
+                long tick = DateTime.Now.Ticks;
+                int uploadTotal = CurrentDataCell.UploadedTotal + new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(50, 700);
                 this.CurrentDataCell.UploadedTotal = uploadTotal >= CurrentDataCell.Total?CurrentDataCell.Total: uploadTotal;
                 CompontentComplatedEvent?.Invoke(this.CurrentDataCell);
                 Thread.Sleep(new Random().Next(100, 1500));
@@ -67,6 +67,8 @@ namespace DataSync.Api
         }
 
         public void Start() => WorkingTread?.Start();
+
+        public void Join() => WorkingTread?.Join();
 
         public void Suspend() => WorkingTread?.Suspend();
 

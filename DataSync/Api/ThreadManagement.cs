@@ -35,7 +35,7 @@ namespace DataSync.Api
             UploadCompontent compontent = this.Compontents.Where(c => c.CurrentDataCell == dataCell).FirstOrDefault();
             UploadCompontentComplatedEvent.Invoke(dataCell);
             if (dataCell.Total <= dataCell.UploadedTotal)
-                compontent.Abort();
+                compontent.Join();
 
         }
 
