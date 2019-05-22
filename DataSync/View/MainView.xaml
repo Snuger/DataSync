@@ -58,7 +58,7 @@
                 Width="35" />
             </ToggleButton>
         </StackPanel>
-        <Grid DockPanel.Dock="Right" Margin="8">
+        <Grid DockPanel.Dock="Right" Margin="8,8,8,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -74,7 +74,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn   Width="80" Header="编号" Binding="{Binding Id,Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn   Width="120" Header="交易名称" Binding="{Binding Name}"></DataGridTextColumn>
-                    <DataGridTextColumn   Width="80" Header="日期" Binding="{Binding  BusinessDate}"></DataGridTextColumn>
+                    <DataGridTextColumn   Width="100" Header="日期" Binding="{Binding  BusinessDate}"></DataGridTextColumn>
                     <DataGridTextColumn Width="90" Header="记录数" Binding="{Binding Total}"></DataGridTextColumn>
                     <DataGridTextColumn  Width="90" Header="已上传" Binding="{Binding UploadedTotal}"></DataGridTextColumn>
                     <DataGridTemplateColumn  Width="220" Header="进度">
@@ -86,7 +86,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <WrapPanel Grid.Row="2">
+            <WrapPanel Grid.Row="2"  VerticalAlignment="Center">
                 <Label>状态-最大线程数：</Label>
                 <Label Content="{Binding MaxThreadNum}"></Label>
                 <Label Content="当前线程数:"/>

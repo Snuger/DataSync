@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 namespace DataSync.ViewModel
 {
     public class MainViewModel:Screen
-    {       
+    {
+
+        object lockobject = new object();
 
         public int MaxThreadNum { get; set; } = 5;
 
@@ -78,7 +80,7 @@ namespace DataSync.ViewModel
             CurrentNum = CurrentNum + 1;            
             DataCell dataCell=   new DataCell() { Id = this.CurrentNum, Name = "用户基本资料", Total = new Random().Next(1000, 10000), UploadedTotal = 0, BusinessDate = BeginDate.ToString("yyyy-MM-dd"), Complated = false };
             BeginDate = BeginDate.AddDays(1);
-            lock (this.DataCells)
+            lock (lockobject)
             {
                 this.DataCells.Add(dataCell);
             }           
@@ -86,27 +88,31 @@ namespace DataSync.ViewModel
 
         public void AllTaskStartCommand()
         {
+            lock (lockobject)
+            {
+                foreach (var item in this.DataCells.ToList().Where(c => c.Complated == false))
+                {
+                    if (ActiveThreadNum < MaxThreadNum)
+                    {
+                        var query = TaskThradManagement.Compontents.Where(c => c.CurrentDataCell.Id == item.Id);
+                        if (!query.Any())
+                        {
+                            UploadCompontent compontent = new UploadCompontent(item);
+                            compontent.CompontentComplatedEvent += TaskThradManagement.OnCompontentComplated;
+                            TaskThradManagement.Compontents.Add(compontent);
+                            compontent.CreateCompontentWorkThrad();
+                            compontent.Start();
+                            ActiveThreadNum = ActiveThreadNum + 1;
+                        }
 
-            foreach (var item in this.DataCells.ToList().Where(c=>c.Complated==false))
-            {                                   
-                if (ActiveThreadNum < MaxThreadNum)
-                {
-                    var query = TaskThradManagement.Compontents.Where(c => c.CurrentDataCell.Id == item.Id);
-                    if (!query.Any()) {
-                        UploadCompontent compontent = new UploadCompontent(item);
-                        compontent.CompontentComplatedEvent += TaskThradManagement.OnCompontentComplated;
-                        TaskThradManagement.Compontents.Add(compontent);
-                        compontent.CreateCompontentWorkThrad();
-                        compontent.Start();
-                        ActiveThreadNum = ActiveThreadNum + 1;
                     }
-                        
-                }else
-                {
-                    break;
+                    else
+                    {
+                        break;
+                    }
+
                 }
-                
-            }    
+            }            
         }
 
         protected void OnUploadCompontentComplatedEvent(DataCell cell)

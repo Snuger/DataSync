@@ -23,8 +23,7 @@ namespace DataSync.View
     {
         public MainView()
         {
-            InitializeComponent();
-            this.DataContext = new MainViewModel();
+            InitializeComponent();         
         }
     }
 }
