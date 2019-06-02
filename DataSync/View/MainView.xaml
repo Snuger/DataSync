@@ -70,7 +70,7 @@
                 <Button Content="全部开始" Name="btn_start_all" Command="{s:Action AllTaskStartCommand}" Margin="4,0"/>
                 <Button Content="全自动" Name="btn_auto" Margin="4,0" Command="{s:Action FullyAutomaticCommand}"/>              
             </WrapPanel>
-            <DataGrid  IsReadOnly="True" CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding DataCells}"  AutoGenerateColumns="False">
+            <DataGrid  IsReadOnly="True" CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding DataCells,UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn   Width="80" Header="编号" Binding="{Binding Id,Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn   Width="120" Header="交易名称" Binding="{Binding Name}"></DataGridTextColumn>

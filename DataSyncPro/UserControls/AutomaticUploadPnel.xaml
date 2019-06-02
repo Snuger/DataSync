@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="DataSyncPro.UserControls.AutomaticUploadPnel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:DataSyncPro.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding AutomaticUploadViewModel,Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel Margin="2,0,0,0">
+        <WrapPanel Height="35" Margin="0,5" DockPanel.Dock="Top">
+            <Button VerticalAlignment="Center"  Content="添加任务" Name="btn_add_task"  Margin="4,0"/>
+            <Button Content="开始" Margin="4,0"/>
+            <Button Content="全部开始" Name="btn_start_all" Margin="4,0"/>
+            <Button Content="全自动" Name="btn_auto" Margin="4,0" Command="{Binding AutomaticUploadCommand}" />
+        </WrapPanel>
+        <DataGrid DockPanel.Dock="Top"  IsReadOnly="True" CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding UploadEnities,UpdateSourceTrigger=Default}"  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn   Width="80" Header="编号" Binding="{Binding Id,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn   Width="120" Header="交易名称" Binding="{Binding TableDiscription}"></DataGridTextColumn>
+                <DataGridTextColumn   Width="100" Header="日期" Binding="{Binding  OperatingRange}"></DataGridTextColumn>
+                <DataGridTextColumn Width="90" Header="记录数" Binding="{Binding Total}"></DataGridTextColumn>
+                <DataGridTextColumn  Width="90" Header="已上传" Binding="{Binding Uploaded}"></DataGridTextColumn>
+                <DataGridTemplateColumn  Width="220" Header="进度">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar md:TransitionAssist.DisableTransitions="True"  Maximum="{Binding  Total}" Value="{Binding Uploaded}" Minimum="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel Height="30" DockPanel.Dock="Bottom"/>
+    </DockPanel>
+</UserControl>

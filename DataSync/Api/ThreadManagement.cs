@@ -38,8 +38,6 @@ namespace DataSync.Api
                //compontent.Abort();
                 compontent.Join();
             }
-                
-
         }
 
         /// <summary>
