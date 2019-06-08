@@ -34,7 +34,10 @@ namespace DataSyncPro.Compontent
 
 
         public void StartAllThread() {
-            UploadCompontents?.ForEach(c => c.Start());
+            UploadCompontents?.ForEach((c)=>{
+                if (c.CurrentUploadEntity.IsComplated == false)
+                    c.Start();
+            });
         }
 
         public void OnCompontentComplated(UploadEntity entity)

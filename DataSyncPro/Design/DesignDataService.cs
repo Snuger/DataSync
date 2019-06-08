@@ -33,8 +33,10 @@ namespace DataSyncPro.Design
         }
         public void GetData(UploadDataOption option, Action<IEnumerable<UploadEntity>, Exception> callback)
         {
+            Random random = new Random(10);
+            long tick = DateTime.Now.Ticks;
             List<UploadEntity> uploadEntities = new List<UploadEntity>() {
-               new UploadEntity(){Id=option.Id, TableName=option.TableName, TableDiscription=option.TableDiscription, OperatingRange=option.OperatingRange, Total=new Random().Next(1000,900000), Uploaded=0},
+               new UploadEntity(){Id=option.Id, TableName=option.TableName, TableDiscription=option.TableDiscription, OperatingRange=option.OperatingRange, Total=new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(1000,90000), Uploaded=0},
            };
             callback(uploadEntities, null);
         }       

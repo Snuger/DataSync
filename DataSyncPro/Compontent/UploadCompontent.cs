@@ -51,17 +51,18 @@ namespace DataSyncPro.Compontent
             {
                 Random random = new Random(10);
                 long tick = DateTime.Now.Ticks;
-                int uploadTotal = CurrentUploadEntity.Uploaded + new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(50, 700);
+                int uploadTotal = CurrentUploadEntity.Uploaded + new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(1000, 5500);
                 CurrentUploadEntity.Uploaded = uploadTotal >= CurrentUploadEntity.Total ? CurrentUploadEntity.Total : uploadTotal;
                 UploadCompontentComplatedEvent?.Invoke(CurrentUploadEntity);
-                Thread.Sleep(new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(50, 1500));
+                Thread.Sleep(new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)).Next(50, 2000));
             }
         }
 
+
         /// <summary>
-        /// 
+        /// 启动
         /// </summary>
-        public void Start() => WorkingThread?.Start();
+        public void Start() =>WorkingThread?.Start();
 
         /// <summary>
         /// 

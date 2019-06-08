@@ -15,21 +15,26 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel Margin="2,0,0,0">
-        <WrapPanel Height="35" Margin="0,5" DockPanel.Dock="Top">
+    <Grid Margin="2,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Height="35" Margin="0,5" Grid.Row="0">
             <Button VerticalAlignment="Center"  Content="添加任务" Name="btn_add_task"  Margin="4,0"/>
             <Button Content="开始" Margin="4,0"/>
             <Button Content="全部开始" Name="btn_start_all" Margin="4,0"/>
-            <Button Content="全自动" Name="btn_auto" Margin="4,0" Command="{Binding AutomaticUploadCommand}" />
+            <Button Content="{Binding AutomaticButtonText,UpdateSourceTrigger=PropertyChanged}" Name="btn_auto" Margin="4,0" Command="{Binding AutomaticUploadCommand}" />
         </WrapPanel>
-        <DataGrid DockPanel.Dock="Top"  IsReadOnly="True" CanUserSortColumns="False" Grid.Row="1" ItemsSource="{Binding UploadEnities,UpdateSourceTrigger=Default}"  AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" IsReadOnly="True" CanUserSortColumns="False" ItemsSource="{Binding UploadEnities,UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn   Width="80" Header="编号" Binding="{Binding Id,Mode=OneWay}"></DataGridTextColumn>
                 <DataGridTextColumn   Width="120" Header="交易名称" Binding="{Binding TableDiscription}"></DataGridTextColumn>
                 <DataGridTextColumn   Width="100" Header="日期" Binding="{Binding  OperatingRange}"></DataGridTextColumn>
                 <DataGridTextColumn Width="90" Header="记录数" Binding="{Binding Total}"></DataGridTextColumn>
                 <DataGridTextColumn  Width="90" Header="已上传" Binding="{Binding Uploaded}"></DataGridTextColumn>
-                <DataGridTemplateColumn  Width="220" Header="进度">
+                <DataGridTemplateColumn MinWidth="220" MaxWidth="500" Header="进度">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ProgressBar md:TransitionAssist.DisableTransitions="True"  Maximum="{Binding  Total}" Value="{Binding Uploaded}" Minimum="0" />
@@ -38,6 +43,16 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <WrapPanel Height="30" DockPanel.Dock="Bottom"/>
-    </DockPanel>
+        <WrapPanel Height="30" Grid.Row="2">
+            <Label>状态-最大线程数：</Label>
+            <Label Content="{Binding MaxThreadNum}" FontWeight="Bold" FontSize="14"  Foreground="#DDBB4747"/>
+            <Label Content="当前线程数:"/>
+            <Label Content="{Binding WorkingThreadNUm}" FontWeight="Bold" FontSize="14"  Foreground="#DDBB4747"/>
+            <Label Content="共计完成:"/>
+            <Label Content="{Binding CompletedNum}" FontWeight="Bold" FontSize="14"  Foreground="#DDBB4747"/>
+            <Label Content="项任务，共计"/>
+            <Label FontWeight="Bold" FontSize="14" Foreground="#DDBB4747" Content="{Binding UploadedTotal}"/>
+            <Label Content="条记录"/>
+        </WrapPanel>
+    </Grid>
 </UserControl>
