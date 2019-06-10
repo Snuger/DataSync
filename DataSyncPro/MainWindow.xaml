@@ -10,6 +10,7 @@
         mc:Ignorable="d ignore"
         Height="520"
         Width="850"
+        WindowStartupLocation="CenterScreen"
         Title="MVVM Light Application"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     
@@ -40,5 +41,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <ContentControl Grid.Column="1"  Content="{Binding ElementName=lbxBasicMenu,Path=SelectedItem.Content}"></ContentControl>
+        <md:DialogHost/>
     </Grid>
 </control:MetroWindow>

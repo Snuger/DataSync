@@ -11,9 +11,9 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
 using DataSyncPro.Model;
 using DataSyncPro.Contract;
+using CommonServiceLocator;
 
 namespace DataSyncPro.ViewModel
 {
@@ -43,6 +43,8 @@ namespace DataSyncPro.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AutomaticUploadViewModel>();
+            SimpleIoc.Default.Register<DataBaeConfigViewModel>();
+            SimpleIoc.Default.Register<DataBaseGatherViewModel>();
         }
 
         /// <summary>
@@ -59,6 +61,13 @@ namespace DataSyncPro.ViewModel
             }
         }      
         public AutomaticUploadViewModel AutomaticUploadViewModel { get => ServiceLocator.Current.GetInstance<AutomaticUploadViewModel>(); }
+
+
+        public DataBaeConfigViewModel DataBaeConfigViewModel { get => ServiceLocator.Current.GetInstance<DataBaeConfigViewModel>(); }
+
+
+        public DataBaseGatherViewModel DataBaseGatherViewModel { get => ServiceLocator.Current.GetInstance<DataBaseGatherViewModel>(); }
+
 
         /// <summary>
         /// Cleans up all the resources.
