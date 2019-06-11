@@ -12,7 +12,7 @@
         Width="850"
         WindowStartupLocation="CenterScreen"
         Title="MVVM Light Application"
-        DataContext="{Binding Main, Source={StaticResource Locator}}">
+        DataContext="{Binding Main, Source={StaticResource Locator}}" Icon="favicon.ico">
     
     <Window.Resources>
         <ResourceDictionary>
@@ -21,26 +21,29 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="lbxBasicMenu" Grid.Column="0" ItemsSource="{Binding BasicMenus}" SelectedIndex="0" BorderBrush="Beige" BorderThickness="1">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <virtualCollection:VirtualizingWrapPanel ItemHeight="64" ItemWidth="64" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="md:PackIconKind">
-                    <DockPanel ToolTip="{Binding  Name}" Width="40" Height="40" Background="Transparent">
-                        <md:PackIcon DockPanel.Dock="Top"  Kind="{Binding Kiind}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32"/>
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ContentControl Grid.Column="1"  Content="{Binding ElementName=lbxBasicMenu,Path=SelectedItem.Content}"></ContentControl>
-        <md:DialogHost/>
-    </Grid>
+    <md:DialogHost Identifier="RootDialog">
+        <md:DrawerHost>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="lbxBasicMenu" Grid.Column="0" ItemsSource="{Binding BasicMenus}" SelectedIndex="0" BorderBrush="Beige" BorderThickness="1">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <virtualCollection:VirtualizingWrapPanel ItemHeight="64" ItemWidth="64" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="md:PackIconKind">
+                            <DockPanel ToolTip="{Binding  Name}" Width="40" Height="40" Background="Transparent">
+                                <md:PackIcon DockPanel.Dock="Top"  Kind="{Binding Kiind}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ContentControl Grid.Column="1"  Content="{Binding ElementName=lbxBasicMenu,Path=SelectedItem.Content}"></ContentControl>
+            </Grid>
+        </md:DrawerHost>        
+    </md:DialogHost>
 </control:MetroWindow>

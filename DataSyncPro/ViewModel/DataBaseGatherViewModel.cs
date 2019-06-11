@@ -27,10 +27,7 @@ namespace DataSyncPro.ViewModel
 
         private async void OpenDbConfigDilog()
         {
-            var view = new DataBaeConfigPanel
-            {
-                DataContext = new DataBaeConfigViewModel()
-            };
+            var view = new DataBaeConfigPanel();
             var result = await DialogHost.Show(view, DbConfigDilogCloseEventHanle);
           }
         private void DbConfigDilogCloseEventHanle(object Sender,DialogClosingEventArgs args) {
