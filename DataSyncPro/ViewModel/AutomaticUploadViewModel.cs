@@ -1,4 +1,5 @@
 ﻿using DataSyncPro.Compontent;
+using DataSyncPro.IService;
 using DataSyncPro.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;

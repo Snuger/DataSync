@@ -14,6 +14,8 @@ using GalaSoft.MvvmLight.Ioc;
 using DataSyncPro.Model;
 using DataSyncPro.Contract;
 using CommonServiceLocator;
+using DataSyncPro.IService;
+using DataSyncPro.Contract.IService;
 
 namespace DataSyncPro.ViewModel
 {
@@ -30,16 +32,9 @@ namespace DataSyncPro.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
-                SimpleIoc.Default.Register<ISpecialMenuService, Design.SpecialMenuService>();               
-            }
-            else
-            {
-                SimpleIoc.Default.Register<IDataService, DataService>();
-                SimpleIoc.Default.Register<ISpecialMenuService, SpecialMenuService>();
-            }
+            SimpleIoc.Default.Register<IDataService, DataService>();
+            SimpleIoc.Default.Register<ISpecialMenuService, SpecialMenuService>();
+            
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AutomaticUploadViewModel>();

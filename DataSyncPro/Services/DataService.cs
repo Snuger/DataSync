@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataSyncPro.IService;
+using System;
 using System.Collections.Generic;
 
 namespace DataSyncPro.Model

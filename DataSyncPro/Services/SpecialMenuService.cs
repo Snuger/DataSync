@@ -1,4 +1,5 @@
 ﻿using DataSyncPro.Contract;
+using DataSyncPro.Contract.IService;
 using DataSyncPro.Model;
 using DataSyncPro.UserControls;
 using MaterialDesignThemes.Wpf;

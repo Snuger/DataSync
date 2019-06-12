@@ -32,6 +32,9 @@ namespace DataSyncPro.ViewModel
           }
         private void DbConfigDilogCloseEventHanle(object Sender,DialogClosingEventArgs args) {
             if ((bool)args.Parameter == false) return;
+            DataBaeConfigViewModel model =((System.Windows.FrameworkElement)args.Session.Content).DataContext as DataBaeConfigViewModel;
+          
+           
             args.Cancel();
         }
     }

@@ -4,6 +4,7 @@ using MaterialDesignThemes.Wpf;
 using System.Collections;
 using System.Collections.Generic;
 using DataSyncPro.Contract;
+using DataSyncPro.Contract.IService;
 
 namespace DataSyncPro.ViewModel
 {

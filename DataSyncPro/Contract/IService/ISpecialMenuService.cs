@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataSyncPro.Contract
+namespace DataSyncPro.Contract.IService
 {
     public interface ISpecialMenuService
     {
