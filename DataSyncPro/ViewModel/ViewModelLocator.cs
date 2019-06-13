@@ -16,6 +16,9 @@ using DataSyncPro.Contract;
 using CommonServiceLocator;
 using DataSyncPro.IService;
 using DataSyncPro.Contract.IService;
+using DataSyncPro.Contract.IRepository;
+using DataSyncPro.Repository;
+using DataSyncPro.Services;
 
 namespace DataSyncPro.ViewModel
 {
@@ -34,6 +37,9 @@ namespace DataSyncPro.ViewModel
 
             SimpleIoc.Default.Register<IDataService, DataService>();
             SimpleIoc.Default.Register<ISpecialMenuService, SpecialMenuService>();
+
+            SimpleIoc.Default.Register<IDataBaseRepository, DataBaseRepository>();
+            SimpleIoc.Default.Register<IDataBaseService, DataBaseService>();
             
 
             SimpleIoc.Default.Register<MainViewModel>();

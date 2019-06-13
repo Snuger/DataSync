@@ -8,11 +8,11 @@ namespace DataSyncPro.Contract
 {
     public interface IUpdateRepostry<T,in TKey> where T :class
     {
-        Task<T> Add(Action<T, Exception> callBack);
+        Task<T> Add(T model,Action<T, Exception> callBack);
 
-        Task<T> Update(Action<T, Exception> callBack);
+        Task<T> Update(T model,Action<T, Exception> callBack);
 
-        Task<T> Delete(Action<T, Exception> callBack);
+        Task<T> Delete(TKey key,Action<T, Exception> callBack);
 
     }
 }

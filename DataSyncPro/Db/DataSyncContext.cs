@@ -9,13 +9,17 @@ namespace DataSyncPro.Db
 {
     public class DataSyncContext : DbContext
     {
-        private const string ConnectionString = @"data source=DataSyncPro.db";
+        private const string ConnectionString = "DataSyncPro";
+
+        public DataSyncContext():base(ConnectionString)
+        {
+        }
 
         public DataSyncContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {
         }
 
-        public DbSet<SynchronousDb> SynchronousDbs { get; set; }
+        public DbSet<SynchronousDb> SynchronousDb { get; set; }
 
     }
 }

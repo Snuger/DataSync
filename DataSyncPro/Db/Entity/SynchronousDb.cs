@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +11,10 @@ namespace DataSyncPro.Db
     /// <summary>
     /// 数据库配置
     /// </summary>
+    [Table("SynchronousDb")]
     public class SynchronousDb
     {
+        [Key]
         public int Id { get; set; }
 
         public string DbType { get; set; }
