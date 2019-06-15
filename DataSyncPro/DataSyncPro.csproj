@@ -123,6 +123,7 @@
     <Compile Include="Db\DataSyncContext.cs" />
     <Compile Include="Db\Entity\SynchronousDb.cs" />
     <Compile Include="Model\BasicMenu.cs" />
+    <Compile Include="Model\DataBaseType.cs" />
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Repository\DataBaseRepository.cs" />
     <Compile Include="Services\DataBaseService.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Services\SpecialMenuService.cs" />
     <Compile Include="Model\UploadData.cs" />
     <Compile Include="Model\UploadEntity.cs" />
+    <Compile Include="Converters\DataBaseTypeConverter.cs" />
     <Compile Include="UserControls\AutomaticUploadPnel.xaml.cs">
       <DependentUpon>AutomaticUploadPnel.xaml</DependentUpon>
     </Compile>
@@ -146,6 +148,7 @@
     <Compile Include="ViewModel\AutomaticUploadViewModel.cs" />
     <Compile Include="ViewModel\DataBaeConfigViewModel.cs" />
     <Compile Include="ViewModel\DataBaseGatherViewModel.cs" />
+    <Compile Include="ViewModel\DBViewModel\SynchronousDbViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="VirtualCollection\VirtualizingWrapPanel.cs" />

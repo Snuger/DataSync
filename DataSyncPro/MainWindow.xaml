@@ -42,7 +42,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ContentControl Grid.Column="1"  Content="{Binding ElementName=lbxBasicMenu,Path=SelectedItem.Content}"></ContentControl>
+                <ContentControl Grid.Column="1" Content="{Binding ElementName=lbxBasicMenu,Path=SelectedItem.Content}"></ContentControl>
             </Grid>
         </md:DrawerHost>        
     </md:DialogHost>

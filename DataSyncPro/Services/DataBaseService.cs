@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace DataSyncPro.Services
 {
@@ -28,5 +29,20 @@ namespace DataSyncPro.Services
             });
             return db;
         }
+
+        public async Task<bool> Delete(int ID)
+        {
+            bool result = false;
+            await repository.Delete(ID, (item, err) => {
+                if (err != null)
+                {
+                    result = true;
+                }
+            });
+            return true;
+        }
+
+        public  IEnumerable<SynchronousDb>GetSynchronousDbs()=>repository.GetItems();
+    
     }
 }

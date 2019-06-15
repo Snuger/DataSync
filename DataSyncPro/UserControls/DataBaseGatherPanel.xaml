@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:cvt="clr-namespace:DataSyncPro.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataSyncPro.UserControls"
              mc:Ignorable="d" 
@@ -14,6 +15,7 @@
                 <ResourceDictionary Source="../Skins/MainSkin.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <cvt:DataBaseTypeConverter x:Key="DataBaseTypeCovert"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="2,0,0,0">
@@ -25,18 +27,32 @@
         <WrapPanel Grid.Row="0" Height="35" Margin="0,5">
             <Button x:Name="button_add" Content="新增" Command="{Binding OpenDbConfigDilogCommand}" Width="75" Margin="4,0"/>
             <Button x:Name="button_edit" Content="修改" Width="75" Margin="4,0"/>
-            <Button x:Name="button_remove" Content="删除" Width="75" Margin="4,0"/>
+            <Button x:Name="button_remove" Content="删除" Width="75" Command="{Binding  DeleteDataBaseConfigCommad}" Margin="4,0"/>
+            <Button x:Name="button_query" Content="查询" Width="75" Margin="4,0" Command="{Binding  DataBaseGatherLoadedCommand}"/>
         </WrapPanel>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" Grid.RowSpan="2">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding CurrentSynchronousDB}" ItemsSource="{Binding Database}" Grid.RowSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="编号"/>
-                <DataGridTextColumn Header="数据库类型"/>
-                <DataGridTextColumn Header="地址"/>
-                <DataGridTextColumn Header="端口"/>
-                <DataGridTextColumn Header="用户名"/>
-                <DataGridTextColumn Header="密码"/>
-                <DataGridTextColumn Header="实例名(数据库名)"/>
-                <DataGridTextColumn Header="状态"/>
+                <DataGridTemplateColumn Header="#">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsChecked}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="编号" Width="80" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="类型" Width="100" Binding="{Binding DbType,Converter={StaticResource DataBaseTypeCovert}}"/>
+                <DataGridTextColumn Header="地址" Width="120" Binding="{Binding Ip}"/>
+                <DataGridTextColumn Header="端口" Width="80" Binding="{Binding Port}"/>
+                <DataGridTextColumn Header="用户名"  Width="80" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="密码" Width="80" Binding="{Binding PassWord}"/>
+                <DataGridTextColumn Header="数据库名" Width="120" Binding="{Binding InstanceName}"/>
+                <DataGridTemplateColumn Header="状态">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ToggleButton  Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"  ToolTip="MaterialDesignSwitchDarkToggleButton" IsChecked="{Binding Enable}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>        
     </Grid>

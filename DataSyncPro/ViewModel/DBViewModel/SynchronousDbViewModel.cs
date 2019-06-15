@@ -1,24 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataSyncPro.Db
+namespace DataSyncPro.ViewModel.DBViewModel
 {
-    /// <summary>
-    /// 数据库配置
-    /// </summary>
-    [Table("SynchronousDb")]
-    public class SynchronousDb
-    {  
-       [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public class SynchronousDbViewModel
+    {
         public int ID { get; set; }
 
         public int DbType { get; set; }
-
 
         public string Ip { get; set; }
 
@@ -32,5 +24,6 @@ namespace DataSyncPro.Db
 
         public int Enable { get; set; }
 
+        public bool IsChecked { get; set; }
     }
 }

@@ -34,7 +34,7 @@
                 <DataGridTextColumn   Width="100" Header="日期" Binding="{Binding  OperatingRange}"></DataGridTextColumn>
                 <DataGridTextColumn Width="90" Header="记录数" Binding="{Binding Total}"></DataGridTextColumn>
                 <DataGridTextColumn  Width="90" Header="已上传" Binding="{Binding Uploaded}"></DataGridTextColumn>
-                <DataGridTemplateColumn MinWidth="220" MaxWidth="500" Header="进度">
+                <DataGridTemplateColumn MinWidth="220" MaxWidth="500" Header="启用状态">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ProgressBar md:TransitionAssist.DisableTransitions="True"  Maximum="{Binding  Total}" Value="{Binding Uploaded}" Minimum="0" />

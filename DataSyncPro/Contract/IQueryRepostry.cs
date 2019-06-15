@@ -14,6 +14,6 @@ namespace DataSyncPro.Contract
 
         Task<T> GetItemsAsync();
 
-        List<T> GetItems();
+        IEnumerable<T> GetItems();
     }
 }

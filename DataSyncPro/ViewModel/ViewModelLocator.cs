@@ -19,6 +19,9 @@ using DataSyncPro.Contract.IService;
 using DataSyncPro.Contract.IRepository;
 using DataSyncPro.Repository;
 using DataSyncPro.Services;
+using System.Collections.ObjectModel;
+using DataSyncPro.Db;
+using System.Collections.Generic;
 
 namespace DataSyncPro.ViewModel
 {
@@ -39,13 +42,13 @@ namespace DataSyncPro.ViewModel
             SimpleIoc.Default.Register<ISpecialMenuService, SpecialMenuService>();
 
             SimpleIoc.Default.Register<IDataBaseRepository, DataBaseRepository>();
-            SimpleIoc.Default.Register<IDataBaseService, DataBaseService>();
-            
+            SimpleIoc.Default.Register<IDataBaseService, DataBaseService>();           
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AutomaticUploadViewModel>();
             SimpleIoc.Default.Register<DataBaeConfigViewModel>();
             SimpleIoc.Default.Register<DataBaseGatherViewModel>();
+        
         }
 
         /// <summary>

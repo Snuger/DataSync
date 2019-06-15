@@ -31,7 +31,22 @@ namespace DataSyncPro.Repository
 
         public Task<SynchronousDb> Delete(int key, Action<SynchronousDb, Exception> callBack)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DataSyncContext context = new DataSyncContext())
+                {
+                   var obj= context.SynchronousDb.Where(c => c.ID == key).FirstOrDefault();
+                    context.SynchronousDb.Remove(obj);
+                    callBack(obj, null);
+                    context.SaveChangesAsync();
+                   return  Task.FromResult(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                callBack(null, ex);
+                return null;
+            }
         }
 
         public SynchronousDb GetItemByID(int id)
@@ -39,9 +54,11 @@ namespace DataSyncPro.Repository
             throw new NotImplementedException();
         }
 
-        public List<SynchronousDb> GetItems()
-        {
-            throw new NotImplementedException();
+        public IEnumerable<SynchronousDb> GetItems()
+        {           
+            using (DataSyncContext context = new DataSyncContext()) {
+                return context.SynchronousDb.ToList();
+            }                      
         }
 
         public Task<SynchronousDb> GetItemsAsync()
