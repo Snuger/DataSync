@@ -12,22 +12,24 @@ using DataSyncPro.Contract.IService;
 using DataSyncPro.Db;
 using System.Collections.ObjectModel;
 using DataSyncPro.ViewModel.DBViewModel;
+using DataSyncPro.Model;
 
 namespace DataSyncPro.ViewModel
 {
     public class DataBaseGatherViewModel:ViewModelBase
     {
-        private IDataBaseService dataBaseService;      
+        private IDataBaseService dataBaseService;
 
         public DataBaseGatherViewModel(IDataBaseService baseService)
-        {        
+        {
             this.dataBaseService = baseService;
             AutoMapper.Mapper.Initialize(cfg => {
                 cfg.CreateMap<DataBaeConfigViewModel, SynchronousDb>();
                 cfg.CreateMap<SynchronousDb, SynchronousDbViewModel>().ForMember(x => x.IsChecked, opt => opt.Ignore());
-                });
+                cfg.CreateMap<SynchronousDbViewModel, DataBaeConfigViewModel>().ForMember(x=>x.SelectDataBaseType,opt=>opt.MapFrom(src=>new DataBaseType() { DatabseTypeId= src.DbType, DatabseTypeName="", DbPort=0 } ));
+            });
             //打开窗口
-            OpenDbConfigDilogCommand = new RelayCommand(OpenDbConfigDilog);
+            OpenDbConfigDilogCommand = new RelayCommand<string>(parame=> this.OpenDbConfigDilog(parame));
             DataBaseGatherLoadedCommand = new RelayCommand(LoadData);
             DeleteDataBaseConfigCommad = new RelayCommand(Delete);
         }
@@ -50,12 +52,38 @@ namespace DataSyncPro.ViewModel
             set { Set(ref database, value); }
         }
 
+
+        //public ICommand ShowCommand
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand<string>(
+        //            (user) =>
+        //            {
+                        
+        //            }, (user) => {
+        //                return !string.IsNullOrEmpty(user);
+        //            });
+
+        //    }
+        //}
+
+
         private SynchronousDbViewModel currentSynchronousDB;
 
         public SynchronousDbViewModel CurrentSynchronousDB
         {
             get { return currentSynchronousDB; }
             set { Set(ref currentSynchronousDB, value); }
+        }
+
+
+        private bool isModify;
+
+        public bool IsModify
+        {
+            get { return isModify; }
+            set { Set(ref isModify, value); }
         }
 
 
@@ -74,16 +102,23 @@ namespace DataSyncPro.ViewModel
             }
         }
 
-        private async void OpenDbConfigDilog()
+        private async void OpenDbConfigDilog(string opearType)
         {
             var view = new DataBaeConfigPanel();
+            switch (opearType.ToLower())
+            {
+                case "add":
+                    break;
+                case "modify":
+                    DataBaeConfigViewModel model = AutoMapper.Mapper.Map<DataBaeConfigViewModel>(CurrentSynchronousDB);
+                    view.DataContext = model;
+                    break;
+            }           
             var result = await DialogHost.Show(view, DbConfigDilogCloseEventHanle);
         }
 
 
-        
-
-
+  
         private void DbConfigDilogCloseEventHanle(object Sender,DialogClosingEventArgs args) {
             if ((bool)args.Parameter == false) return;
             DataBaeConfigViewModel model = ((System.Windows.FrameworkElement)args.Session.Content).DataContext as DataBaeConfigViewModel;

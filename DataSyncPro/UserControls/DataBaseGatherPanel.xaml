@@ -25,8 +25,8 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0" Height="35" Margin="0,5">
-            <Button x:Name="button_add" Content="新增" Command="{Binding OpenDbConfigDilogCommand}" Width="75" Margin="4,0"/>
-            <Button x:Name="button_edit" Content="修改" Width="75" Margin="4,0"/>
+            <Button x:Name="button_add" Content="新增" Command="{Binding OpenDbConfigDilogCommand}" CommandParameter="Add" Width="75" Margin="4,0"/>
+            <Button x:Name="button_edit" Content="修改" Width="75" Margin="4,0" Command="{Binding OpenDbConfigDilogCommand}" CommandParameter="Modify"/>
             <Button x:Name="button_remove" Content="删除" Width="75" Command="{Binding  DeleteDataBaseConfigCommad}" Margin="4,0"/>
             <Button x:Name="button_query" Content="查询" Width="75" Margin="4,0" Command="{Binding  DataBaseGatherLoadedCommand}"/>
         </WrapPanel>
