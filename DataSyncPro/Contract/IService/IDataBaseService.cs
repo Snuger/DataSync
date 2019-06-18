@@ -12,6 +12,8 @@ namespace DataSyncPro.Contract.IService
     {
         Task<SynchronousDb> Add(SynchronousDb synchronousDb);
 
+        Task<SynchronousDb> Update(SynchronousDb synchronousDb);
+
        IEnumerable<SynchronousDb>GetSynchronousDbs();
 
         Task<bool> Delete(int ID);

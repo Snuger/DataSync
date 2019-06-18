@@ -123,7 +123,7 @@
     <Compile Include="Db\DataSyncContext.cs" />
     <Compile Include="Db\Entity\SynchronousDb.cs" />
     <Compile Include="Model\BasicMenu.cs" />
-    <Compile Include="Model\DataBaseType.cs" />
+    <Compile Include="ViewModel\DataBaseType.cs" />
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Repository\DataBaseRepository.cs" />
     <Compile Include="Services\DataBaseService.cs" />
@@ -150,6 +150,7 @@
     <Compile Include="ViewModel\DataBaseGatherViewModel.cs" />
     <Compile Include="ViewModel\DBViewModel\SynchronousDbViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SysConstant.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="VirtualCollection\VirtualizingWrapPanel.cs" />
     <Page Include="MainWindow.xaml">

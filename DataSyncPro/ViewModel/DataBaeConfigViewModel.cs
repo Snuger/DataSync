@@ -1,4 +1,5 @@
 ﻿using DataSyncPro.Model;
+using DataSyncPro.Model.ViewModel;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,7 @@ namespace DataSyncPro.ViewModel
 
         public DataBaeConfigViewModel()
         {
-            DataBaseTypes = new ObservableCollection<DataBaseType>() {
-                 new DataBaseType(){ DatabseTypeId=1, DatabseTypeName="Oracle",DbPort=1521 },
-                 new DataBaseType(){ DatabseTypeId=2, DatabseTypeName="MySql",DbPort=3306 },
-                 new DataBaseType(){ DatabseTypeId=3, DatabseTypeName="PostgreSql",DbPort=5432 },
-                 new DataBaseType(){ DatabseTypeId=4, DatabseTypeName="SqlServer",DbPort=1433 },
-                 new DataBaseType(){ DatabseTypeId=5, DatabseTypeName="HiBase",DbPort=60000 },
-                 new DataBaseType(){ DatabseTypeId=6, DatabseTypeName="MangoDB",DbPort=27107 }
-            };
+            
         }
 
         private DataBaseType selectDataBaseType;
@@ -37,18 +31,14 @@ namespace DataSyncPro.ViewModel
             }
         }
 
-        private ObservableCollection<DataBaseType> dataBaseTypes;
-       
         public ObservableCollection<DataBaseType> DataBaseTypes
         {
-            get { return dataBaseTypes; }
-            set { Set(ref dataBaseTypes, value); }
+            get { return SysConstant.dataBaseTypes; }          
         }
-
 
         private int _id;
 
-        public int Id
+        public int ID
         {
             get { return _id; }
             set { Set(ref _id, value); }
@@ -77,6 +67,7 @@ namespace DataSyncPro.ViewModel
             get { return _port; }
             set { Set(ref _port, value); }
         }
+
         private string _userName;
 
         public string UserName

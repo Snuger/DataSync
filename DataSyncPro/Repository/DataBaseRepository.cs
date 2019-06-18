@@ -73,7 +73,21 @@ namespace DataSyncPro.Repository
 
         public Task<SynchronousDb> Update(SynchronousDb model, Action<SynchronousDb, Exception> callBack)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DataSyncContext context = new DataSyncContext()) {
+                  //var obj=context.SynchronousDb.Where(c => c.ID == model.ID).FirstOrDefault();
+                  //  obj = AutoMapper.Mapper.Map<SynchronousDb>(model);                    
+                    context.Entry<SynchronousDb>(model).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                    callBack(model, null);
+                }              
+            }
+            catch (Exception ex)
+            {
+                callBack(model, ex);
+            }
+            return Task.FromResult(model);
         }
     }
 }

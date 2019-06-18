@@ -40,9 +40,9 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="编号" Width="80" Binding="{Binding ID}"/>
-                <DataGridTextColumn Header="类型" Width="100" Binding="{Binding DbType,Converter={StaticResource DataBaseTypeCovert}}"/>
+                <DataGridTextColumn Header="类型" Width="100" Binding="{Binding DataBaseType.DatabseTypeName}"/>
                 <DataGridTextColumn Header="地址" Width="120" Binding="{Binding Ip}"/>
-                <DataGridTextColumn Header="端口" Width="80" Binding="{Binding Port}"/>
+                <DataGridTextColumn Header="端口" Width="80" Binding="{Binding DataBaseType.DbPort}"/>
                 <DataGridTextColumn Header="用户名"  Width="80" Binding="{Binding UserName}"/>
                 <DataGridTextColumn Header="密码" Width="80" Binding="{Binding PassWord}"/>
                 <DataGridTextColumn Header="数据库名" Width="120" Binding="{Binding InstanceName}"/>

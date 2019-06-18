@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataSyncPro.Model
+namespace DataSyncPro.Model.ViewModel
 {
     public class DataBaseType
     {
