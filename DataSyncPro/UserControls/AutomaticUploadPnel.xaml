@@ -46,7 +46,7 @@
         <WrapPanel Height="30" Grid.Row="2">
             <Label>状态-最大线程数：</Label>
             <Label Content="{Binding MaxThreadNum}" FontWeight="Bold" FontSize="14"  Foreground="#DDBB4747"/>
-            <Label Content="当前线程数:"/>
+            <Label Content="工作线程数:"/>
             <Label Content="{Binding WorkingThreadNUm}" FontWeight="Bold" FontSize="14"  Foreground="#DDBB4747"/>
             <Label Content="共计完成:"/>
             <Label Content="{Binding CompletedNum}" FontWeight="Bold" FontSize="14"  Foreground="#DDBB4747"/>

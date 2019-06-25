@@ -33,10 +33,6 @@ namespace DataSyncPro.ViewModel
         {
             get { return id; }
             set {
-                if (value > MaxThreadNum)
-                {
-                    CompletedNum = value - MaxThreadNum;
-                }
                 Set(ref id, value);
             }
             
@@ -72,15 +68,12 @@ namespace DataSyncPro.ViewModel
         public AutomaticUploadViewModel(IDataService dataService)
         {
             DispatcherHelper.Initialize();
-
-            AutomaticButtonText = "全自动";
-
+            AutomaticButtonText = "启动自动上传";
+            AutoRuning = false;
             _dataService = dataService;
             AutomaticUploadCommand = new RelayCommand(AutomaticUpload);
-
             this.ThreadManagement = new ThreadManagement(MaxThreadNum);
-            this.ThreadManagement.UploadCompontentComplatedEvent += UploadCompontentComplated;
-            AutomaticUploadCommand = new RelayCommand(AutomaticUpload);
+            this.ThreadManagement.UploadCompontentComplatedEvent += UploadCompontentComplated;          
             this.UploadEnities = new ObservableCollection<UploadEntity>();
 
             _dataService.GetUploadDataOptions(5, (item, error) =>
@@ -102,14 +95,14 @@ namespace DataSyncPro.ViewModel
 
         protected void AutomaticUpload()
         {
-            if (isAutomatic)
+            IsAutomatic = true;
+            AutoRuning =AutoRuning==true ? false : true;              
+            AutomaticButtonText = (AutoRuning) ? "停止自动上传" : "启动自动上传";
+            if (AutoRuning)
             {
-                return;
+                AutomaticLoadingData();
+                StatrtAllUploadThread(-1);
             }
-            isAutomatic = true;
-            AutomaticLoadingData();
-            StatrtAllUploadThread(-1);
-
         }
 
 
@@ -136,6 +129,17 @@ namespace DataSyncPro.ViewModel
             set { Set(ref isAutomatic, value); }
         }
 
+
+        private bool autoRuning;
+
+        /// <summary>
+        /// 自动上传的运行状态
+        /// </summary>
+        public bool AutoRuning
+        {
+            get { return autoRuning; }
+            set { Set(ref autoRuning, value); }
+        }
 
         private int _completedNum;
 
@@ -229,31 +233,36 @@ namespace DataSyncPro.ViewModel
                     if (entity.Uploaded >= entity.Total)
                     {
                         this.UploadEnities.Where(xc => xc.Id == entity.Id).FirstOrDefault().IsComplated = true;
-                        workingThreadNum = workingThreadNum - 1;
-                        if (isAutomatic)
-                        {
-                            Id = Id + 1;
-                            newThreadId = Id;
-                            UploadDataOption option = new UploadDataOption()
+                        WorkingThreadNUm = WorkingThreadNUm - 1;
+                        CompletedNum = CompletedNum + 1;
+                        if (IsAutomatic)
+                        {                            
+                            if (AutoRuning)
                             {
-                                Id = newThreadId,
-                                IsComplated = false,
-                                TableName = entity.TableName,
-                                TableDiscription = entity.TableDiscription,
-                                OperatingRange = DateTime.ParseExact(entity.OperatingRange.ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture).AddDays(1).ToString("yyyy-MM-dd")
-                            };
-
-                            _dataService.GetData(option, (items, error) =>
-                            {
-                               
-                                if (error != null)
-                                    return;
-                                foreach (var item in items)
+                                Id = Id + 1;
+                                newThreadId = Id;
+                                UploadDataOption option = new UploadDataOption()
                                 {
-                                    this.UploadEnities.Add(item);
-                                }                                  
-                                
-                            });
+                                    Id = newThreadId,
+                                    IsComplated = false,
+                                    TableName = entity.TableName,
+                                    TableDiscription = entity.TableDiscription,
+                                    OperatingRange = DateTime.ParseExact(entity.OperatingRange.ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture).AddDays(1).ToString("yyyy-MM-dd")
+                                };
+
+                                _dataService.GetData(option, (items, error) =>
+                                {
+
+                                    if (error != null)
+                                        return;
+                                    foreach (var item in items)
+                                    {
+                                        this.UploadEnities.Add(item);
+                                    }
+
+                                });
+                            }
+                            
                         }
 
                        StatrtAllUploadThread(newThreadId);
