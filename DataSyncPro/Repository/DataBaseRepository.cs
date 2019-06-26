@@ -6,52 +6,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataSyncPro.Contract.IRepository;
+using DataSyncPro.Contract;
+using EntityFramework.Extensions;
 
 namespace DataSyncPro.Repository
 {
     public class DataBaseRepository : IDataBaseRepository
     {
-        public Task<SynchronousDb> Add(SynchronousDb model, Action<SynchronousDb, Exception> callBack)
+        public Task<bool> Delete(int key, Action<int, Exception> callBack)
         {
+            bool result = false;
             try
             {
                 using (DataSyncContext context = new DataSyncContext())
                 {
-                    context.SynchronousDb.Add(model);
-                    context.SaveChanges();
+                    context.SynchronousDb.Where(c => c.ID == key).Delete();
+                    result =  context.SaveChanges() > 0 ? true : false;
                 }
-                callBack(model, null);
+                callBack(key, null);
             }
             catch (Exception ex)
             {
-                callBack(model, ex);               
-            }
-            return Task.FromResult(model);
-        }
-
-        public Task<SynchronousDb> Delete(int key, Action<SynchronousDb, Exception> callBack)
-        {
-            try
-            {
-                using (DataSyncContext context = new DataSyncContext())
-                {
-                   var obj= context.SynchronousDb.Where(c => c.ID == key).FirstOrDefault();
-                    context.SynchronousDb.Remove(obj);
-                    callBack(obj, null);
-                    context.SaveChangesAsync();
-                   return  Task.FromResult(obj);
-                }
-            }
-            catch (Exception ex)
-            {
-                callBack(null, ex);
-                return null;
-            }
+                callBack(key, ex);
+            }           
+            return Task.FromResult(result);
         }
 
         public SynchronousDb GetItemByID(int id)
         {
-            throw new NotImplementedException();
+            using (DataSyncContext context = new DataSyncContext())
+            {
+                return context.SynchronousDb.Where(c => c.ID == id).FirstOrDefault();
+            }
         }
 
         public IEnumerable<SynchronousDb> GetItems()
@@ -71,23 +57,53 @@ namespace DataSyncPro.Repository
             throw new NotImplementedException();
         }
 
-        public Task<SynchronousDb> Update(SynchronousDb model, Action<SynchronousDb, Exception> callBack)
+
+        Task<bool> IUpdateRepostry<SynchronousDb, int>.Add(SynchronousDb model, Action<SynchronousDb, Exception> callBack)
         {
+            bool result = false;
             try
             {
-                using (DataSyncContext context = new DataSyncContext()) {
-                  //var obj=context.SynchronousDb.Where(c => c.ID == model.ID).FirstOrDefault();
-                  //  obj = AutoMapper.Mapper.Map<SynchronousDb>(model);                    
-                    context.Entry<SynchronousDb>(model).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                    callBack(model, null);
-                }              
+                using (DataSyncContext context = new DataSyncContext())
+                {
+                    context.SynchronousDb.Add(model);
+                    result= context.SaveChanges()>0?true:false;
+                }
+                callBack(model, null);
             }
             catch (Exception ex)
             {
                 callBack(model, ex);
             }
-            return Task.FromResult(model);
+            return Task.FromResult(result);
+        }
+
+        Task<IEnumerable<SynchronousDb>> IQueryRepostry<SynchronousDb, int>.GetItemsAsync()
+        {
+            using (DataSyncContext context = new DataSyncContext())
+            {
+                return Task.FromResult((IEnumerable<SynchronousDb>)context.SynchronousDb.ToList());
+            }
+        }
+
+        Task<bool> IUpdateRepostry<SynchronousDb, int>.Update(SynchronousDb model, Action<SynchronousDb, Exception> callBack)
+        {
+            bool result = false;
+            try
+            {
+                using (DataSyncContext context = new DataSyncContext())
+                {
+                    //var obj=context.SynchronousDb.Where(c => c.ID == model.ID).FirstOrDefault();
+                    //  obj = AutoMapper.Mapper.Map<SynchronousDb>(model);                    
+                    context.Entry<SynchronousDb>(model).State = System.Data.Entity.EntityState.Modified;
+                    result= context.SaveChanges()>0?true:false;
+                    callBack(model, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                callBack(model, ex);
+            }
+            return Task.FromResult(result);
         }
     }
 }

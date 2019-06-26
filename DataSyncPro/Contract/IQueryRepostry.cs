@@ -12,7 +12,7 @@ namespace DataSyncPro.Contract
 
         T GetItemByID(TKey id);
 
-        Task<T> GetItemsAsync();
+        Task<IEnumerable<T>> GetItemsAsync();
 
         IEnumerable<T> GetItems();
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataSyncPro.Db.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,17 +10,12 @@ namespace DataSyncPro.Db
 {
     public class DataSyncContext : DbContext
     {
-        private const string ConnectionString = "DataSyncPro";
-
-        public DataSyncContext():base(ConnectionString)
+        public DataSyncContext():base("name=DataSyncPro")
         {
         }
-
-        public DataSyncContext(string nameOrConnectionString) : base(nameOrConnectionString)
-        {
-        }
-
         public DbSet<SynchronousDb> SynchronousDb { get; set; }
+
+        public DbSet<SourceTable> SourceTables { get; set; }
 
     }
 }
