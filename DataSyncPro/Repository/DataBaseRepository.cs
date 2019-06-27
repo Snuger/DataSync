@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataSyncPro.Contract.IRepository;
 using DataSyncPro.Contract;
-using EntityFramework.Extensions;
+using Z.EntityFramework.Plus;
 
 namespace DataSyncPro.Repository
 {

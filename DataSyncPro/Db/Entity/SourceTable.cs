@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataSyncPro.Db.Entity
 {
-    [Table("SourceTables")]
+    [Table("SourceTables",Schema = "main")]
     public  class SourceTable
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]

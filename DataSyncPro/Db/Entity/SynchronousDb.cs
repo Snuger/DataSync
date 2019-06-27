@@ -11,7 +11,7 @@ namespace DataSyncPro.Db
     /// <summary>
     /// 数据库配置
     /// </summary>
-    [Table("SynchronousDb")]
+    [Table("SynchronousDb")]  
     public class SynchronousDb
     {  
        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
