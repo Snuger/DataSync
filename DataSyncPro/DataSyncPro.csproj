@@ -131,6 +131,7 @@
     <Compile Include="Contract\IQueryRepostry.cs" />
     <Compile Include="Contract\IRepository\ISourceTableRepository.cs" />
     <Compile Include="Contract\IService\IDataBaseService.cs" />
+    <Compile Include="Contract\IService\ISourceTableService.cs" />
     <Compile Include="Contract\IService\ISpecialMenuService.cs" />
     <Compile Include="Contract\IUpdateRepostry.cs" />
     <Compile Include="Db\DataSyncContext.cs" />
@@ -139,6 +140,12 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BasicMenu.cs" />
     <Compile Include="Repository\SourceTableRepository.cs" />
+    <Compile Include="UserControls\DataSourceSettinsPanel.xaml.cs">
+      <DependentUpon>DataSourceSettinsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DataTableSettingsPanel.xaml.cs">
+      <DependentUpon>DataTableSettingsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataBaseType.cs" />
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Repository\DataBaseRepository.cs" />
@@ -164,6 +171,7 @@
     <Compile Include="ViewModel\AutomaticUploadViewModel.cs" />
     <Compile Include="ViewModel\DataBaeConfigViewModel.cs" />
     <Compile Include="ViewModel\DataBaseGatherViewModel.cs" />
+    <Compile Include="ViewModel\DataSourceSettinsViewModel.cs" />
     <Compile Include="ViewModel\DBViewModel\SynchronousDbViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SysConstant.cs" />
@@ -194,6 +202,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DataBaseGatherPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DataSourceSettinsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DataTableSettingsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

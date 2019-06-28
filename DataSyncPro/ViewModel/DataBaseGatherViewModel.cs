@@ -97,8 +97,8 @@ namespace DataSyncPro.ViewModel
                 return;
            bool rsult=await dataBaseService.Delete(CurrentSynchronousDB.ID);
             if (rsult)
-            {
-                LoadData();
+            {               
+               LoadData();
             }
         }
 
