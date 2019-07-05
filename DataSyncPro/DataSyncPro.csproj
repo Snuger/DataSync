@@ -131,20 +131,27 @@
     <Compile Include="Contract\IQueryRepostry.cs" />
     <Compile Include="Contract\IRepository\ISourceTableRepository.cs" />
     <Compile Include="Contract\IService\IDataBaseService.cs" />
+    <Compile Include="Contract\IService\IQueryService.cs" />
     <Compile Include="Contract\IService\ISourceTableService.cs" />
     <Compile Include="Contract\IService\ISpecialMenuService.cs" />
+    <Compile Include="Contract\IService\IUpdateService.cs" />
     <Compile Include="Contract\IUpdateRepostry.cs" />
     <Compile Include="Db\DataSyncContext.cs" />
+    <Compile Include="Db\Entity\TableColumn.cs" />
     <Compile Include="Db\Entity\SourceTable.cs" />
     <Compile Include="Db\Entity\SynchronousDb.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BasicMenu.cs" />
     <Compile Include="Repository\SourceTableRepository.cs" />
+    <Compile Include="Services\SourceTableService.cs" />
     <Compile Include="UserControls\DataSourceSettinsPanel.xaml.cs">
       <DependentUpon>DataSourceSettinsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DataTableSettingsPanel.xaml.cs">
       <DependentUpon>DataTableSettingsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DtaTableGatherPanel.xaml.cs">
+      <DependentUpon>DtaTableGatherPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DataBaseType.cs" />
     <Compile Include="Model\DataItem.cs" />
@@ -210,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DataTableSettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DtaTableGatherPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

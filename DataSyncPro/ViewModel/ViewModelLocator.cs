@@ -37,12 +37,11 @@ namespace DataSyncPro.ViewModel
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             SimpleIoc.Default.Register<IDataService, DataService>();
-            SimpleIoc.Default.Register<ISpecialMenuService, SpecialMenuService>();
 
+            SimpleIoc.Default.Register<ISpecialMenuService, SpecialMenuService>();
             SimpleIoc.Default.Register<IDataBaseRepository, DataBaseRepository>();
-            SimpleIoc.Default.Register<IDataBaseService, DataBaseService>();           
+            SimpleIoc.Default.Register<IDataBaseService, DataBaseService>();          
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AutomaticUploadViewModel>();

@@ -19,16 +19,15 @@ namespace DataSyncPro.Services
             this.repository = repository;
         }
 
-        public async Task<SynchronousDb> Add(SynchronousDb synchronousDb)
+        public async Task<bool> Add(SynchronousDb synchronousDb)
         {
-            SynchronousDb db = null;
+            bool result = false;
             await repository.Add(synchronousDb, (item, error) =>
             {
                 if (error != null)
-                    return;
-                db = item;
+                    result = true;
             });
-            return db;
+            return result;          
         }
 
         public async Task<bool> Delete(int ID)
@@ -44,15 +43,14 @@ namespace DataSyncPro.Services
 
         public  IEnumerable<SynchronousDb>GetSynchronousDbs()=>repository.GetItems();
 
-        public async Task<SynchronousDb> Update(SynchronousDb synchronousDb)
+        public async Task<bool> Update(SynchronousDb synchronousDb)
         {
-            SynchronousDb db = new SynchronousDb();
+            bool result = false;
             await repository.Update(synchronousDb,(item,err)=> {
-                if (err != null)
-                    return;
-                db = item;
+                if (err == null)
+                    result = true;               
             });
-            return db;
+            return result;
         }
     }
 }

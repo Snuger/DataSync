@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 namespace DataSyncPro.Db.Entity
 {
     [Table("SourceTables")]
-    public  class SourceTable
+    public class TableColumn
     {
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         /// <summary>
-        /// 表名
+        /// 列名
         /// </summary>
-        public string TableName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// 表名描述
+        /// 类型
+        /// </summary>
+        public int  DataType { get; set; }
+
+        /// <summary>
+        /// 描述
         /// </summary>
         public string Discription { get; set; }
-
-        /// <summary>
-        /// 表字段
-        /// </summary>
-        public List<TableColumn> Columns { get; set; }
 
 
     }

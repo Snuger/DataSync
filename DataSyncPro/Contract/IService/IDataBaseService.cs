@@ -10,9 +10,9 @@ namespace DataSyncPro.Contract.IService
 {
     public interface IDataBaseService
     {
-        Task<SynchronousDb> Add(SynchronousDb synchronousDb);
+        Task<bool> Add(SynchronousDb synchronousDb);
 
-        Task<SynchronousDb> Update(SynchronousDb synchronousDb);
+        Task<bool> Update(SynchronousDb synchronousDb);
 
        IEnumerable<SynchronousDb>GetSynchronousDbs();
 

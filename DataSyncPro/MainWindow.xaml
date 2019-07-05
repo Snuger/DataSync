@@ -8,8 +8,8 @@
         xmlns:ignore="http://www.galasoft.ch/ignore"      
         xmlns:virtualCollection="clr-namespace:DataSyncPro.VirtualCollection"
         mc:Ignorable="d ignore"
-        Height="520"
-        Width="850"
+        Height="550"
+        Width="975"
         WindowStartupLocation="CenterScreen"
         Title="MVVM Light Application"
         DataContext="{Binding Main, Source={StaticResource Locator}}" Icon="favicon.ico">

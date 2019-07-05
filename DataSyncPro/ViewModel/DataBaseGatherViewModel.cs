@@ -25,14 +25,22 @@ namespace DataSyncPro.ViewModel
         {
             this.dataBaseService = baseService;
             AutoMapper.Mapper.Initialize(cfg => {
-                cfg.CreateMap<DataBaeConfigViewModel, SynchronousDb>();
-                cfg.CreateMap<SynchronousDb, SynchronousDbViewModel>().ForMember(x => x.IsChecked, opt => opt.Ignore()).ForMember(x=>x.DataBaseType,opt=>opt.MapFrom(src=>SysConstant.dataBaseTypes.Where(c=>c.DatabseTypeId==src.DbType).FirstOrDefault()));
+                cfg.CreateMap<DataBaeConfigViewModel, SynchronousDb>()
+                .ForMember(c=>c.Ip,opt=>opt.MapFrom(src=>src.Ip))
+                .ForMember(c => c.Port, opt => opt.MapFrom(src => src.Port))
+                .ForMember(c => c.DbType, opt => opt.MapFrom(src => src.DbType));
+                cfg.CreateMap<SynchronousDbViewModel, SynchronousDb>()
+                .ForMember(x => x.Port, opt => opt.MapFrom(src => src.DataBaseType.DbPort));             
+                cfg.CreateMap<SynchronousDb, SynchronousDbViewModel>()               
+                .ForMember(x => x.IsChecked, opt => opt.Ignore())
+                .ForMember(x=>x.DataBaseType,opt=>opt.MapFrom(src=>SysConstant.dataBaseTypes.Where(c=>c.DatabseTypeId==src.DbType).FirstOrDefault()));
                 cfg.CreateMap<SynchronousDbViewModel, DataBaeConfigViewModel>().ForMember(x=>x.SelectDataBaseType,opt=>opt.MapFrom(src=>src.DataBaseType));
             });
+         
             //打开窗口
             OpenDbConfigDilogCommand = new RelayCommand<string>(parame=> this.OpenDbConfigDilog(parame));
             DataBaseGatherLoadedCommand = new RelayCommand(LoadData);
-            DeleteDataBaseConfigCommad = new RelayCommand(Delete);
+            //DeleteDataBaseConfigCommad = new RelayCommand(Delete);
         }
 
         public ICommand OpenDbConfigDilogCommand { get;  } 
@@ -42,7 +50,17 @@ namespace DataSyncPro.ViewModel
         public ICommand DataBaseGatherLoadedCommand { get; set; }
 
 
-        public ICommand DeleteDataBaseConfigCommad { get; set; }
+        public ICommand DeleteDataBaseConfigCommad
+        {
+            get
+            {
+                return new RelayCommand<SynchronousDbViewModel>((model)=> {
+                    Task<bool> result =dataBaseService.Delete(model.ID);
+                    if (result.Result)
+                        LoadData();
+                });
+            }
+        }
 
 
         private IEnumerable<SynchronousDbViewModel> database;
@@ -61,8 +79,9 @@ namespace DataSyncPro.ViewModel
         //        return new RelayCommand<string>(
         //            (user) =>
         //            {
-                        
-        //            }, (user) => {
+
+        //            }, (user) =>
+        //            {
         //                return !string.IsNullOrEmpty(user);
         //            });
 
@@ -101,6 +120,26 @@ namespace DataSyncPro.ViewModel
                LoadData();
             }
         }
+
+
+        public ICommand ChangeDbStateCommand
+        {
+            get
+            {
+                return new RelayCommand<SynchronousDbViewModel>((model)=> {
+                    model.Enable = model.Enable==1 ? 0 : 1;
+                    SynchronousDb db = AutoMapper.Mapper.Map<SynchronousDb>(model);
+                    dataBaseService.Update(db);
+                });
+            }
+        }
+
+        //private async void ChangeDbState(SynchronousDbViewModel model)
+        //{
+        //    model.Enable = model.Enable == 0 ? 1 : 0;
+        //    SynchronousDb db = AutoMapper.Mapper.Map<SynchronousDb>(model);
+        //    await dataBaseService.Update(db);
+        //}
 
         private async void OpenDbConfigDilog(string opearType)
         {
