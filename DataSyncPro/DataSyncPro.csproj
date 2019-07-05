@@ -153,6 +153,21 @@
     <Compile Include="UserControls\DtaTableGatherPanel.xaml.cs">
       <DependentUpon>DtaTableGatherPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SourceTableGaterPanel.xaml.cs">
+      <DependentUpon>SourceTableGaterPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TargetDataBaeSettingsPanel.xaml.cs">
+      <DependentUpon>TargetDataBaeSettingsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TargetTableSettingsPanel.xaml.cs">
+      <DependentUpon>TargetTableSettingsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TartgetDatabaseGatherPanel.xaml.cs">
+      <DependentUpon>TartgetDatabaseGatherPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TartgetTableGatherPanel.xaml.cs">
+      <DependentUpon>TartgetTableGatherPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataBaseType.cs" />
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Repository\DataBaseRepository.cs" />
@@ -182,6 +197,8 @@
     <Compile Include="ViewModel\DBViewModel\SynchronousDbViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SysConstant.cs" />
+    <Compile Include="ViewModel\TargetDataBaeSettingsViewModel.cs" />
+    <Compile Include="ViewModel\TartgetDatabaseGatherViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="VirtualCollection\VirtualizingWrapPanel.cs" />
     <Page Include="MainWindow.xaml">
@@ -221,6 +238,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DtaTableGatherPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SourceTableGaterPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TargetDataBaeSettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TargetTableSettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TartgetDatabaseGatherPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TartgetTableGatherPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
