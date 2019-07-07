@@ -12,8 +12,7 @@
         Width="975"
         WindowStartupLocation="CenterScreen"
         Title="MVVM Light Application"
-        DataContext="{Binding Main, Source={StaticResource Locator}}" Icon="favicon.ico">
-    
+        DataContext="{Binding Main, Source={StaticResource Locator}}" Icon="favicon.ico">    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,19 +27,31 @@
                     <ColumnDefinition Width="65"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="lbxBasicMenu" Grid.Column="0" ItemsSource="{Binding BasicMenus}" SelectedIndex="0" BorderBrush="Beige" BorderThickness="1">
+                <ListBox x:Name="lbxBasicMenu" Grid.Column="0" ItemsSource="{Binding BasicMenus}" SelectedIndex="0" BorderBrush="Beige" BorderThickness="1">            
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <virtualCollection:VirtualizingWrapPanel ItemHeight="64" ItemWidth="64" />
-                        </ItemsPanelTemplate>
+                            <virtualCollection:VirtualizingWrapPanel ItemHeight="64" ItemWidth="64" Background="#e9e9e9" />
+                        </ItemsPanelTemplate>                        
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="md:PackIconKind">
-                            <DockPanel ToolTip="{Binding  Name}" Width="40" Height="40" Background="Transparent">
-                                <md:PackIcon DockPanel.Dock="Top"  Kind="{Binding Kiind}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32"/>
-                            </DockPanel>
+                            <Grid x:Name="BtnPanel" ToolTip="{Binding  Name}" Width="64" Height="64"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <md:PackIcon x:Name="SelectIcon" Foreground="#5a5a5a" Kind="{Binding Kiind}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="40"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="Selector.IsSelected" Value="True" />
+                                        <Condition  Property="Selector.IsSelectionActive" Value="False"/>                                       
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="SelectIcon" Property="Foreground" Value="Red"></Setter>
+                                </MultiTrigger>
+                                <Trigger Property="Selector.IsMouseOver" Value="True">
+                                    <Setter TargetName="SelectIcon" Property="Foreground" Value="#404040"></Setter>
+                                </Trigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
+                    </ListBox.ItemTemplate>              
                 </ListBox>
                 <ContentControl Grid.Column="1" Content="{Binding ElementName=lbxBasicMenu,Path=SelectedItem.Content}"></ContentControl>
             </Grid>
