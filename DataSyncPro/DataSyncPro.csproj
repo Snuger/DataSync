@@ -156,6 +156,18 @@
     <Compile Include="UserControls\SourceTableGaterPanel.xaml.cs">
       <DependentUpon>SourceTableGaterPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SyncJobComplatedGatherPanel.xaml.cs">
+      <DependentUpon>SyncJobComplatedGatherPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SyncJobGatherPanel.xaml.cs">
+      <DependentUpon>SyncJobGatherPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SyncJobObsoleteGatherPanel.xaml.cs">
+      <DependentUpon>SyncJobObsoleteGatherPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SyncJobRuningGatherPanel.xaml.cs">
+      <DependentUpon>SyncJobRuningGatherPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SyncJobSettingsPanel.xaml.cs">
       <DependentUpon>SyncJobSettingsPanel.xaml</DependentUpon>
     </Compile>
@@ -199,6 +211,7 @@
     <Compile Include="ViewModel\DataSourceSettinsViewModel.cs" />
     <Compile Include="ViewModel\DBViewModel\SynchronousDbViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SyncJobSettingsViewModel.cs" />
     <Compile Include="ViewModel\SysConstant.cs" />
     <Compile Include="ViewModel\TargetDataBaeSettingsViewModel.cs" />
     <Compile Include="ViewModel\TartgetDatabaseGatherViewModel.cs" />
@@ -245,6 +258,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SourceTableGaterPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SyncJobComplatedGatherPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SyncJobGatherPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SyncJobObsoleteGatherPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SyncJobRuningGatherPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
