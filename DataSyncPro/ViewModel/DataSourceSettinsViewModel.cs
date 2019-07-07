@@ -24,7 +24,7 @@ namespace DataSyncPro.ViewModel
         {           
             Menus = new List<BasicMenu>() {
                  new BasicMenu(){Id="1", Name="数据库设置",Discription="设置现有的可用数据库", Kiind=PackIconKind.Database, ParentId="0", Content=new DataBaseGatherPanel() },
-                 new BasicMenu(){Id="1", Name="数据表设置",Discription="设置现有的可用数据表", Kiind=PackIconKind.Database, ParentId="0", Content=new DataTableSettingsPanel() }
+                 new BasicMenu(){Id="1", Name="数据表设置",Discription="设置现有的可用数据表", Kiind=PackIconKind.Database, ParentId="0", Content=new SourceTableGaterPanel() }
             };
         }
     }
