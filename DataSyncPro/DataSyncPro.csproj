@@ -156,6 +156,9 @@
     <Compile Include="UserControls\SourceTableGaterPanel.xaml.cs">
       <DependentUpon>SourceTableGaterPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SyncJobSettingsPanel.xaml.cs">
+      <DependentUpon>SyncJobSettingsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TargetDataBaeSettingsPanel.xaml.cs">
       <DependentUpon>TargetDataBaeSettingsPanel.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SourceTableGaterPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SyncJobSettingsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
