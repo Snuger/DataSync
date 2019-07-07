@@ -27,6 +27,7 @@ namespace DataSyncPro.Db.Entity
         /// <summary>
         /// 表字段
         /// </summary>
+        [ForeignKey("TableID")]
         public List<TableColumn> Columns { get; set; }
 
 

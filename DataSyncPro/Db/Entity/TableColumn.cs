@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataSyncPro.Db.Entity
 {
-    [Table("SourceTables")]
+    [Table("SourceTableColumn")]
     public class TableColumn
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,6 +23,9 @@ namespace DataSyncPro.Db.Entity
         /// 类型
         /// </summary>
         public int  DataType { get; set; }
+      
+        public int TableID { get; set; }
+
 
         /// <summary>
         /// 描述
