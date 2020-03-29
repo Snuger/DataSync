@@ -49,6 +49,7 @@ namespace DataSyncPro.ViewModel
             SimpleIoc.Default.Register<DataBaseGatherViewModel>();
             SimpleIoc.Default.Register<DataSourceSettinsViewModel>();
             SimpleIoc.Default.Register<TargetDataBaeSettingsViewModel>();
+            SimpleIoc.Default.Register<SyncJobSettingsViewModel>();
         
         }
 
@@ -78,6 +79,12 @@ namespace DataSyncPro.ViewModel
 
 
         public TargetDataBaeSettingsViewModel TargetDataBaeSettingsViewModel { get => ServiceLocator.Current.GetInstance<TargetDataBaeSettingsViewModel>(); }
+
+
+        public SyncJobSettingsViewModel SyncJobSettingsViewModel { get => ServiceLocator.Current.GetInstance<SyncJobSettingsViewModel>(); }
+
+
+
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>

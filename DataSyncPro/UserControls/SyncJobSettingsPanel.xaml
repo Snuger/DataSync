@@ -1,13 +1,13 @@
-﻿<UserControl x:Class="DataSyncPro.UserControls.TargetDataBaeSettingsPanel"
+﻿<UserControl x:Class="DataSyncPro.UserControls.SyncJobSettingsPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"           
+               xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"           
              xmlns:virtualCollection="clr-namespace:DataSyncPro.VirtualCollection"          
              xmlns:local="clr-namespace:DataSyncPro.UserControls"
              mc:Ignorable="d" 
-             DataContext="{Binding TargetDataBaeSettingsViewModel,Source={StaticResource Locator}}"
+             DataContext="{Binding SyncJobSettingsViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -41,4 +41,3 @@
         <ContentControl Grid.Column="1" Content="{Binding ElementName=lbxSourceConfig,Path=SelectedItem.Content}"></ContentControl>
     </Grid>
 </UserControl>
-
